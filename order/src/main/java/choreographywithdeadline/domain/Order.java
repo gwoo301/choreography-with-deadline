@@ -52,7 +52,7 @@ public class Order {
     }
 
     //<<< Clean Arch / Port Method
-    
+
     public static void approve(StockDecreased stockDecreased) {
 
         repository().findById(
@@ -129,17 +129,15 @@ public class Order {
 
         */
 
-        /** Example 2:  finding and process
-        
-
-        repository().findById(deadlineReached.get???()).ifPresent(order->{
+        repository().findById(deadlineReached.getOrderId()).ifPresent(order->{
             
-            order // do something
+            order.setStatus("REJECTED"); // do something
             repository().save(order);
 
+            new OrderRejected(order).publishAfterCommit();
 
          });
-        */
+
 
     }
     //>>> Clean Arch / Port Method
