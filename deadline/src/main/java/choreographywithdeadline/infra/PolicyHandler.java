@@ -24,6 +24,7 @@ public class PolicyHandler {
         value = KafkaProcessor.INPUT,
         condition = "headers['type']=='OrderCreated'"
     )
+    /*
     public void wheneverOrderCreated_Schedule(
         @Payload OrderCreated orderCreated
     ) {
@@ -35,5 +36,12 @@ public class PolicyHandler {
         // Sample Logic //
         Deadline.schedule(event);
     }
+    */
+
+    // @Scheduled(fixedRate = 5000) //FOCUS: every 5 seconds. 5초에 한번씩
+    public void checkDeadline(){
+        Deadline.sendDeadlineEvents();
+    }
+
 }
 //>>> Clean Arch / Inbound Adaptor
